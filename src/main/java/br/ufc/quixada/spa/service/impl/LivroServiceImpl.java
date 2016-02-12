@@ -49,7 +49,6 @@ public class LivroServiceImpl  extends GenericServiceImpl<Livro> implements Livr
 		
 	}
 
-	
 	@Transactional
 	@Override
 	public String removeLivroDaWishList(Long idLivro, Long idUsuario) {

@@ -62,9 +62,15 @@ public class Livro implements Serializable {
 	private String numeroPaginas;
 
 	@ManyToOne 
-	@JsonBackReference
 	private Usuario usuario;
+
+	@Column(name = "genero", nullable = false)
+	private String genero;
 	
+
+	@Column(name = "autor", nullable = false)
+	private String autor;
+/*	
 	@ManyToMany
 	@JoinTable(name = "livro_autor", joinColumns = { @JoinColumn(name = "autor_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "livro_id") })
@@ -74,7 +80,7 @@ public class Livro implements Serializable {
 	@JoinTable(name = "livro_genero", joinColumns = { @JoinColumn(name = "genero_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "livro_id") })
 	private List<Genero> generos;
-
+*/
 	
 	public Long getId() {
 		return id;
@@ -109,7 +115,7 @@ public class Livro implements Serializable {
 		this.numeroPaginas = numeroPaginas;
 	}
 
-
+/*
 	public List<Autor> getAutores() {
 		return autores;
 	}
@@ -124,7 +130,7 @@ public class Livro implements Serializable {
 
 	public void setGeneros(List<Genero> generos) {
 		this.generos = generos;
-	}
+	}*/
 
 	public Byte[] getFoto() {
 		return foto;
@@ -142,12 +148,39 @@ public class Livro implements Serializable {
 		this.usuario = usuario;
 	}
 
+	
+	
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
 	@Override
+	public String toString() {
+		return "Livro [id=" + id + ", foto=" + Arrays.toString(foto) + ", titulo=" + titulo + ", sinopse=" + sinopse
+				+ ", numeroPaginas=" + numeroPaginas + ", usuario=" + usuario + ", genero=" + genero + ", autor="
+				+ autor + "]";
+	}
+
+/*	@Override
 	public String toString() {
 		return "Livro [id=" + id + ", foto=" + Arrays.toString(foto) + ", titulo=" + titulo + ", sinopse=" + sinopse
 				+ ", numeroPaginas=" + numeroPaginas + ", usuario=" + usuario + ", autores=" + autores + ", generos="
 				+ generos + "]";
-	}
+	}*/
+	
+	
 	
 	
 

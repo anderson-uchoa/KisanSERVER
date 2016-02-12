@@ -48,7 +48,6 @@ public class LivroController {
 		return livroService.findLivroUsuarioEmWishlist(id);
 	}
 
-	//ok
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ResponseStatusMessage insert(@RequestBody Livro livro) {
 	

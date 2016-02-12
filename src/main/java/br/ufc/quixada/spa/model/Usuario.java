@@ -48,12 +48,16 @@ public class Usuario implements Serializable {
 	@Column(name = "cidade", nullable = false)
 	private String cidade;
 	
+	
+		
+
+    @JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "livros_desejados", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "livro_id") })
 	private List<Livro> livrosDesejados;
 
-	@JsonIgnore
+    @JsonIgnore
 	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
 	@JsonManagedReference
 	private List<Livro> livros;

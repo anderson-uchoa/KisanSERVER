@@ -36,7 +36,7 @@ private Logger log = LoggerFactory.getLogger(this.getClass());
 		return usuarioService.findLivrosById(id);
 	}
 	
-	
+
 	@RequestMapping(value="{id}", method = RequestMethod.GET)
 	public @ResponseBody Usuario findById(@PathVariable Long id) {
 		log.debug(" Usuario - GET (id)");
@@ -55,6 +55,7 @@ private Logger log = LoggerFactory.getLogger(this.getClass());
 		return usuarioService.find(Usuario.class);
 	}
 	
+
 	@RequestMapping( method = RequestMethod.POST)
 	public @ResponseBody ResponseStatusMessage insert(@RequestBody Usuario usuario) {
 		log.debug("Usuario - POST");
