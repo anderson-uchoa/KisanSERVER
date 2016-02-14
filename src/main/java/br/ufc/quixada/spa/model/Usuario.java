@@ -52,7 +52,7 @@ public class Usuario implements Serializable {
 		
 
     @JsonIgnore
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "livros_desejados", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "livro_id") })
 	private List<Livro> livrosDesejados;

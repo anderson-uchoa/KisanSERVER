@@ -26,7 +26,7 @@ public class LivroServiceImpl  extends GenericServiceImpl<Livro> implements Livr
 	
 	@Transactional
 	@Override
-	public String insereLivroEmWishList(Long idLivro, Long idUsuario) {
+	public Livro insereLivroEmWishList(Long idLivro, Long idUsuario) {
 
 		Livro livro = find(Livro.class, idLivro);
 		Usuario usuario = usuarioService.find(Usuario.class, idUsuario);
@@ -34,9 +34,9 @@ public class LivroServiceImpl  extends GenericServiceImpl<Livro> implements Livr
 		if (!findLivroEmWishlist(idLivro, idUsuario)) {
 			usuario.getLivrosDesejados().add(livro);
 			usuarioService.update(usuario);
-			return "Livro inserido com sucesso na wishList";
+			return livro;
 		} else {
-			return "Livro já estava cadastrado na wishList";
+			return null;
 		}
 	}
 	

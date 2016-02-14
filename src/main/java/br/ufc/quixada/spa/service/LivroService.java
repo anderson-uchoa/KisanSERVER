@@ -7,8 +7,10 @@ import br.ufc.quixada.spa.model.Livro;
 
 public interface LivroService extends GenericService<Livro> {
 
-	public String insereLivroEmWishList(Long idLivro, Long idUsuario);
+	public Livro insereLivroEmWishList(Long idLivro, Long idUsuario);
 
+	
+	
 	public String removeLivroDaWishList(Long idLivro, Long idUsuario);
 
 	public List<Livro> findLivroUsuarioEmWishlist(Long idUsuario);

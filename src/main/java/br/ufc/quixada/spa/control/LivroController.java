@@ -52,7 +52,6 @@ public class LivroController {
 	public @ResponseBody ResponseStatusMessage insert(@RequestBody Livro livro) {
 	
 		log.debug("Livro - POST:" + livro.toString());
-		
 		livroService.insereLivro(livro, livro.getUsuario().getId());
 		return new ResponseStatusMessage(ResponseStatus.SUCCESS, "Livro inserida com sucesso");
 	}
@@ -60,10 +59,10 @@ public class LivroController {
 	
 	
 	@RequestMapping(value="/insereLivroWishList/{id}", method = RequestMethod.POST)
-	public @ResponseBody ResponseStatusMessage insereLivroEmWishList(@RequestBody Livro livro,  @PathVariable Long id ) {
+	public @ResponseBody Livro insereLivroEmWishList(@RequestBody Livro livro,  @PathVariable Long id ) {
 		log.debug("WishList - POST - insere livro na wishlist");
-		String msg = livroService.insereLivroEmWishList(livro.getId(), id);
-		return new ResponseStatusMessage(ResponseStatus.SUCCESS, msg);
+		return livroService.insereLivroEmWishList(livro.getId(), id);
+		
 	}
 	
 
@@ -91,7 +90,9 @@ public class LivroController {
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseStatusMessage delete(@PathVariable Long id) {
 		log.debug("Livro - DELETE");
-		livroService.delete(new Livro(id));
+		Livro livro = livroService.find(Livro.class, id);
+		livroService.removeLivroDaWishList(livro.getId(), livro.getUsuario().getId());
+		livroService.delete(livro);
 		return new ResponseStatusMessage(ResponseStatus.SUCCESS, "Livro removida com sucesso");
 	}
 	
