@@ -9,13 +9,11 @@ public interface LivroService extends GenericService<Livro> {
 
 	public Livro insereLivroEmWishList(Long idLivro, Long idUsuario);
 
-	
-	
 	public String removeLivroDaWishList(Long idLivro, Long idUsuario);
 
 	public List<Livro> findLivroUsuarioEmWishlist(Long idUsuario);
 
-	public void insereLivro(Livro livro, Long idUsuario);
+	public Long insereLivro(Livro livro, Long idUsuario);
 
 	public String insereLivroEmWishListByIdFacebook(Long idLivro, Long idFacebookUsuario);
 

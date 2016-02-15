@@ -1,32 +1,46 @@
 package br.ufc.quixada.spa.control;
 
+
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
 
+import org.apache.commons.fileupload.FileItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.quixada.kisan.enumeration.ResponseStatus;
 import br.ufc.quixada.kisan.model.ResponseStatusMessage;
 import br.ufc.quixada.spa.model.Livro;
 import br.ufc.quixada.spa.service.LivroService;
 
+
 @Named
 @RequestMapping("/livros")
 public class LivroController {
+	
+	@Autowired
+	private ServletContext context;
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Inject
 	private LivroService livroService;
+	
+	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<Livro> findAll() {
@@ -38,6 +52,7 @@ public class LivroController {
 	@RequestMapping(value="{id}", method = RequestMethod.GET)
 	public @ResponseBody Livro findById(@PathVariable Long id) {
 		log.debug("Livro - GET (id)");
+	
 		return livroService.find(Livro.class, id);
 	}
 	
@@ -49,13 +64,13 @@ public class LivroController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody ResponseStatusMessage insert(@RequestBody Livro livro) {
-	
-		log.debug("Livro - POST:" + livro.toString());
-		livroService.insereLivro(livro, livro.getUsuario().getId());
-		return new ResponseStatusMessage(ResponseStatus.SUCCESS, "Livro inserida com sucesso");
+	public @ResponseBody Long insert(@RequestBody Livro livro) {
+			log.debug("Livro - POST:" + livro.toString());
+			Long id = livroService.insereLivro(livro, livro.getUsuario().getId());
+			log.debug("Livro - POST:" + id);
+			return id;
 	}
-	
+
 	
 	
 	@RequestMapping(value="/insereLivroWishList/{id}", method = RequestMethod.POST)
@@ -65,8 +80,8 @@ public class LivroController {
 		
 	}
 	
-
 	
+
 	@RequestMapping(value="/removerLivroWishList/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseStatusMessage removeLivroDaWishList(@RequestBody Livro livro, @PathVariable Long id  ) {
 		log.debug("WishList - DELETE");
@@ -85,8 +100,6 @@ public class LivroController {
 	}
 	
 	
-	//ok
-	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseStatusMessage delete(@PathVariable Long id) {
 		log.debug("Livro - DELETE");
@@ -95,5 +108,4 @@ public class LivroController {
 		livroService.delete(livro);
 		return new ResponseStatusMessage(ResponseStatus.SUCCESS, "Livro removida com sucesso");
 	}
-	
 }

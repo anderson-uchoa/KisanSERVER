@@ -35,6 +35,7 @@ public class JpaGenericRepositoryImpl<T> implements GenericRepository<T> {
 	@Transactional
 	public void save(T entity) {
 		this.em.persist(entity);
+	
 	}
 
 	@Override
@@ -154,6 +155,7 @@ public class JpaGenericRepositoryImpl<T> implements GenericRepository<T> {
 	@Override
 	public Object findFirst(String query, Map<String, Object> namedParams) {
 		return findFirst(QueryType.NAMED, query, namedParams);
+		
 	}
 
 	@Override
@@ -170,5 +172,14 @@ public class JpaGenericRepositoryImpl<T> implements GenericRepository<T> {
 		return q.executeUpdate();
 		
 	}
+
+
+	@Override
+	public void flush() {
+	em.flush();
+		
+	}
+
+	
 	
 }

@@ -18,6 +18,8 @@ import br.ufc.quixada.spa.service.UsuarioService;
 @Named
 public class UsuarioServiceImpl extends GenericServiceImpl<Usuario> implements UsuarioService {
 
+	
+	
 	@Override
 	public List<Livro> findLivrosById(Long id) {
 		Usuario usuario = find(Usuario.class, id);

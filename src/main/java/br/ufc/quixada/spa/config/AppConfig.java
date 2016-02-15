@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
@@ -27,14 +29,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/**").addResourceLocations("/public/");
     }
 	
-//	@Bean
-//	public InternalResourceViewResolver internalResourceViewResolver() {
-//	  InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//	  resolver.setPrefix("/WEB-INF/view/");
-//	  resolver.setSuffix(".jsp");
-//	  return resolver;
-//	}
 	
+/*	@Bean
+public InternalResourceViewResolver internalResourceViewResolver() {
+  InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+  resolver.setPrefix("/WEB-INF/view/");
+  resolver.setSuffix(".jsp");
+  return resolver;
+}
+*/	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean() {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
@@ -48,4 +51,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		txManager.setEntityManagerFactory(localContainerEntityManagerFactoryBean().nativeEntityManagerFactory);
 		return txManager;
 	}
+	
+	@Bean(name = "multipartResolver")
+    public CommonsMultipartResolver getMultipartResolver() {
+        return new CommonsMultipartResolver();
+    }
 }

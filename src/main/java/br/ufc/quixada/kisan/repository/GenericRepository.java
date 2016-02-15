@@ -12,6 +12,8 @@ public interface GenericRepository<T> {
 	public void setEntityManager(EntityManager em);
 
 	public void save(T entity);
+
+	public void flush();
 	
 	public void update(T entity);
 

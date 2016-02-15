@@ -11,6 +11,8 @@ public interface GenericService<T> {
 	
 	public void update(T entity);
 
+	public void flush();
+	
 	public void delete(T entity);
 
 	public T find(Class<T> entityClass, Object id);

@@ -97,4 +97,10 @@ public class GenericServiceImpl<T> implements GenericService<T> {
 	public T find(Class<T> entityClass, String query, Map<String, Object> namedParams) {
 		return repository.find(entityClass, query, namedParams);
 	}
+
+	@Override
+	public void flush() {
+		repository.flush();
+		
+	}
 }

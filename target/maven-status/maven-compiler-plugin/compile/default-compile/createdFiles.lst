@@ -2,12 +2,9 @@ br/ufc/quixada/kisan/service/impl/GenericServiceImpl.class
 br/ufc/quixada/spa/model/Usuario.class
 br/ufc/quixada/spa/service/impl/AutorServiceImpl.class
 br/ufc/quixada/spa/service/impl/GeneroServiceImpl.class
-br/ufc/quixada/spa/control/WishListController.class
 br/ufc/quixada/spa/model/Livro.class
-br/ufc/quixada/spa/model/WishList.class
 br/ufc/quixada/spa/service/LivroService.class
 br/ufc/quixada/kisan/util/SimpleMap.class
-br/ufc/quixada/spa/service/WishListService.class
 br/ufc/quixada/spa/control/UsuarioController.class
 br/ufc/quixada/spa/filter/CrossOriginResourceSharingFilter.class
 br/ufc/quixada/spa/service/impl/UsuarioServiceImpl.class
@@ -24,6 +21,5 @@ br/ufc/quixada/spa/config/AppConfig.class
 br/ufc/quixada/spa/controller/advice/GlobalControllerExceptionHandler.class
 br/ufc/quixada/kisan/repository/GenericRepository.class
 br/ufc/quixada/spa/service/UsuarioService.class
-br/ufc/quixada/spa/service/impl/WishListServiceImpl.class
 br/ufc/quixada/kisan/repository/jpa/JpaGenericRepositoryImpl.class
 br/ufc/quixada/kisan/service/GenericService.class

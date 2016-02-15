@@ -48,8 +48,6 @@ public class Usuario implements Serializable {
 	@Column(name = "cidade", nullable = false)
 	private String cidade;
 	
-	
-		
 
     @JsonIgnore
 	@ManyToMany(cascade=CascadeType.ALL)

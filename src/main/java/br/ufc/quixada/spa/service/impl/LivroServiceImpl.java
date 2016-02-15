@@ -42,10 +42,13 @@ public class LivroServiceImpl  extends GenericServiceImpl<Livro> implements Livr
 	
 	@Transactional
 	@Override
-    public void insereLivro(Livro livro, Long idUsuario) {
+    public Long insereLivro(Livro livro, Long idUsuario) {
 		Usuario usuario = usuarioService.find(Usuario.class, idUsuario);
 		usuario.getLivros().add(livro);	
 		save(livro);
+		flush();
+		return livro.getId();
+		
 		
 	}
 
