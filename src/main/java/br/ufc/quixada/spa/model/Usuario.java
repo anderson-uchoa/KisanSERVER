@@ -38,7 +38,10 @@ public class Usuario implements Serializable {
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
-
+	
+	@Column(name = "tokenGCM", nullable = false)
+	private String tokenGCM;
+	
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
@@ -76,8 +79,6 @@ public class Usuario implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -136,6 +137,14 @@ public class Usuario implements Serializable {
 		this.id_facebook = id_facebook;
 	}
 
+	public String getTokenGCM() {
+		return tokenGCM;
+	}
+
+	public void setTokenGCM(String tokenGCM) {
+		this.tokenGCM = tokenGCM;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -149,6 +158,7 @@ public class Usuario implements Serializable {
 		result = prime * result + ((livros == null) ? 0 : livros.hashCode());
 		result = prime * result + ((livrosDesejados == null) ? 0 : livrosDesejados.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((tokenGCM == null) ? 0 : tokenGCM.hashCode());
 		return result;
 	}
 
@@ -203,15 +213,22 @@ public class Usuario implements Serializable {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (tokenGCM == null) {
+			if (other.tokenGCM != null)
+				return false;
+		} else if (!tokenGCM.equals(other.tokenGCM))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", id_facebook=" + id_facebook + ", foto=" + Arrays.toString(foto) + ", nome="
-				+ nome + ", email=" + email + ", endereco=" + endereco + ", cidade=" + cidade + ", livrosDesejados="
-				+ livrosDesejados + ", livros=" + livros + "]";
+				+ nome + ", tokenGCM=" + tokenGCM + ", email=" + email + ", endereco=" + endereco + ", cidade=" + cidade
+				+ ", livrosDesejados=" + livrosDesejados + ", livros=" + livros + "]";
 	}
+
+	
 	
 	
 	
